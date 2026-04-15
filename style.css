@@ -162,3 +162,58 @@
     background: #fff;
     color: #000;
 }
+/* Estilo de Tarjetas */
+.squad-card {
+    background-color: #1a0b2e; /* Morado oscuro de la imagen */
+    border: none;
+    border-radius: 0; /* Sin redondeo para look técnico */
+    transition: all 0.3s ease;
+}
+
+.squad-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(163, 71, 255, 0.3);
+    background-color: #24113a;
+}
+
+.card-img-top {
+    border-radius: 0;
+    /* Ajuste para que todas las fotos tengan la misma proporción */
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    filter: grayscale(30%) contrast(110%);
+}
+
+.card-body {
+    padding: 1.25rem 1rem;
+}
+
+/* Tipografía de Integrantes */
+.member-id {
+    display: block;
+    color: #a347ff; /* Morado neón */
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.member-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+}
+
+.member-role {
+    color: #8c8c8c;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+/* Línea decorativa superior */
+header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
