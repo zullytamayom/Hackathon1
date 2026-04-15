@@ -1,0 +1,64 @@
+/* aqui seccion de nav pequenio para frases dinamicas */
+
+.barraFrases {
+    overflow: hidden;
+    height: 2.5rem;
+    width: 100%;
+    background-image: url(https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.frases {
+    display: flex;
+    flex-direction: row;
+    animation: slide 30s infinite;
+    width: 100%;
+}
+
+.frases span {
+    min-width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    flex-shrink: 0;
+    color: white !important;
+    font-size: 16px;
+}
+
+/* Animacion hacia un lado las frases */
+@keyframes slide {
+  0%, 15%   { transform: translateX(0); }
+  20%, 35%  { transform: translateX(-100%); }
+  40%, 55%  { transform: translateX(-200%); }
+  60%, 75%  { transform: translateX(-300%); }
+  80%, 95%  { transform: translateX(-400%); }
+  100%      { transform: translateX(0); }
+}
+
+/* aqui seccion para el banner entre navs */
+
+.banner {
+    height: 25rem;
+    background-image: url(https://i.postimg.cc/tRNtbdR8/Gemini-Generated-Image-qlfc9iqlfc9iqlfc.png);
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    color: azure;
+    padding: 200px 150px;
+    text-align: center;
+}
+
+.navbar-nav {
+    margin: 0 auto;
+    gap: 1.25rem;
+}
+
+.barraNavegacion {
+    text-align: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #fff;
+    gap: 1rem;
+}
