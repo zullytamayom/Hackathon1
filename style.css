@@ -135,24 +135,30 @@
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Navegación */
 .nav-buttons {
     position: absolute;
     bottom: 50px;
     width: 100%;
+    left: 0;           /* Asegura que empiece desde el borde izquierdo */
     text-align: center;
-    z-index: 10;
+    z-index: 20;       /* Asegúrate de que esté por encima de todo */
+    display: flex;     /* Usar flexbox es más confiable */
+    justify-content: center; 
+    gap: 20px;         /* Espacio entre botones */
 }
 
 .nav-buttons button {
-    width: 50px; height: 50px;
+    width: 50px; 
+    height: 50px;
     border-radius: 50%;
     border: 1px solid #fff;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.2); /* Un fondo sutil para que se vean */
+    color: white;
     cursor: pointer;
-    margin: 0 10px;
     transition: 0.3s;
 }
 
-.nav-buttons button:hover { background: #fff; color: #000; }
+.nav-buttons button:hover {
+    background: #fff;
+    color: #000;
+}
