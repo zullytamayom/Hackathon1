@@ -2,7 +2,7 @@
 
 .barraFrases {
     overflow: hidden;
-    height: 2.5rem;
+    height: 2.8rem;
     width: 100%;
     background-image: url(https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
@@ -15,6 +15,7 @@
     flex-direction: row;
     animation: slide 30s infinite;
     width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .frases span {
@@ -24,7 +25,7 @@
     text-align: center;
     flex-shrink: 0;
     color: white !important;
-    font-size: 16px;
+    font-size: 1.5rem;
 }
 
 /* Animacion hacia un lado las frases */
@@ -61,4 +62,9 @@
     font-size: 1.2rem;
     color: #fff;
     gap: 1rem;
+}
+
+.opcionesBarra {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.2rem;
 }
