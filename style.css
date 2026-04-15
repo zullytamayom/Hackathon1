@@ -1,0 +1,89 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.slider-intergalactico {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+.slide-list .item {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s; /* Transición suave al cambiar */
+    box-shadow: 0 30px 50px #000;
+}
+
+/* Las dos primeras tarjetas ocupan todo el fondo */
+.slide-list .item:nth-child(1),
+.slide-list .item:nth-child(2) {
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Posiciones de las tarjetas pequeñas (a partir de la 3era) */
+.slide-list .item:nth-child(3) { left: 50%; }
+.slide-list .item:nth-child(4) { left: calc(50% + 220px); }
+.slide-list .item:nth-child(5) { left: calc(50% + 440px); }
+.slide-list .item:nth-child(n+6) { left: calc(50% + 660px); opacity: 0; }
+
+/* Contenido de la tarjeta activa */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #eee;
+    transform: translateY(-50%);
+    font-family: 'Arial', sans-serif;
+    display: none; /* Oculto por defecto */
+}
+
+/* Solo mostramos el contenido de la 2da tarjeta (la que está al frente) */
+.slide-list .item:nth-child(2) .content {
+    display: block;
+}
+
+/* Animaciones de texto */
+.title { font-size: 40px; text-transform: uppercase; opacity: 0; animation: showcontent 1s ease-in-out 1 forwards; }
+.description { margin: 20px 0; opacity: 0; animation: showcontent 1s ease-in-out 0.3s 1 forwards; }
+.btn-cart { padding: 10px 20px; border: none; cursor: pointer; opacity: 0; animation: showcontent 1s ease-in-out 0.6s 1 forwards; }
+
+@keyframes showcontent {
+    from { opacity: 0; transform: translateY(100px); filter: blur(33px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Navegación */
+.nav-buttons {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.nav-buttons button {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.nav-buttons button:hover { background: #fff; color: #000; }
