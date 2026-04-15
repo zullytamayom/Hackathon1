@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <div id="rocket-transition">
+        <div class="rocket">🚀</div>
+        <div class="trail"></div>
+    </div>
 
     <header>
         <!-- Primer navbar para frases rotativas -->
@@ -27,12 +31,12 @@
         </nav>
 
         <!-- Banner bonito entre navs -->
-        <section class="banner">
+        <section id="banner" class="banner">
         </section>
 
         <!-- segundo navbar -->
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark barraNavegacion">
-            <div class="container-fluid">
+            <div class="container-fluid flex">
                 <!-- que cambie cuando esta en vista movil, lo trea el navbar de bt -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,113 +45,173 @@
 
                 <!-- acceso a las secciones -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link opcionesBarra active" aria-current="page" href="index.html#">Inicio</a>
+                            <a class="nav-link opcionesBarra active" aria-current="page" href="#banner">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link opcionesBarra" href="#seccion-catalogo">Catalogo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link opcionesBarra" href="index.html#">Contactanos</a>
+                            <a class="nav-link opcionesBarra" href="#section-cards">Contactanos</a>
                         </li>
                     </ul>
                 </div>
-    </header>
 
-<section id="seccion-catalogo" class="slider-intergalactico">
-    <div class="container">
-        <ul class="slide-list">
-            <li class="item"
-                style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1000')">
-                <div class="content">
-                    <h2 class="title">Nebulosa de Orión</h2>
-                    <p class="description">Un viaje profundo al corazón de la creación estelar.</p>
-                    <button class="btn-cart">Agregar al carrito</button>
-                </div>
-            </li>
-            <li class="item"
-                style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1000')">
-                <div class="content">
-                    <h2 class="title">Anillos de Saturno</h2>
-                    <p class="description">Explora los cristales de hielo de los anillos más famosos.</p>
-                    <button class="btn-cart">Agregar al carrito</button>
-                </div>
-            </li>
-            <li class="item"
-                style="background-image: url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=1000')">
-                <div class="content">
-                    <h2 class="title">Marte: El Planeta Rojo</h2>
-                    <p class="description">Senderismo en el Monte Olimpo, el volcán más grande.</p>
-                    <button class="btn-cart">Agregar al carrito</button>
-                </div>
-            </li>
-        </ul>
+                <!-- carrito de compras de paquetes interestelares -->
+                <button class="btn btn-dark position-relative carrito ms-auto">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="contadorCarrito"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+                </button>
 
-        <nav class="nav-buttons">
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
+            </div>
         </nav>
-    </div>
-</section>
-<section class="container py-5">
-    <header class="mb-5">
-        <h1 class="header-title fw-bold">TEAM STARBOUND</h1>
-        <div class="d-flex justify-content-between align-items-end">
-            <p class="small text-uppercase opacity-75 m-0">Especialistas en ingenieria y desarrollo de misiones comerciales. </p>
-           
-        "STARBOUND"</p>
-        </div>
     </header>
 
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
-        
-        <div class="col">
-            <div class="card h-100 squad-card">
-                <img src="./fotos/Yessica.jpeg" class="card-img-top" alt="Member 2">
-                <div class="card-body">
-                    <span class="member-id">ID: ORION 02</span>
-                    <h5 class="member-name">Yessica Gonzales</h5>
-                    <p class="member-role">INGENIERA AEROESPACIAL</p>
+    <section id="seccion-catalogo" class="slider-intergalactico">
+        <div class="container">
+            <ul class="slide-list">
+                <li class="item"
+                    style="background-image: url('https://images-assets.nasa.gov/image/iss074e0459458/iss074e0459458~orig.jpg')">
+                    <div class="content">
+                        <h2 class="title">Río Nocturno: El Diamante del Atlántico</h2>
+                        <p class="description">Vuela sobre la "Cidade Maravilhosa" y descubre por qué brilla con luz
+                            propia. Una vista privilegiada desde la ISS donde las luces de Río de Janeiro se funden con
+                            el oscuro océano en un espectáculo visual inolvidable.</p>
+                        <button class="btn-cart">Agregar al carrito</button>
+                    </div>
+                </li>
+                <li class="item"
+                    style="background-image: url('https://apod.nasa.gov/apod/image/2604/iss_moon_transit_zoom.jpeg')">
+                    <div class="content">
+                        <h2 class="title">Moonrise Premium: El Amanecer de la Tierra</h2>
+                        <p class="description">Deja atrás la gravedad y camina por el Mar de la Tranquilidad. Vive la
+                            experiencia definitiva de observar nuestro hogar azul desde la superficie plateada de la
+                            Luna, en un silencio absoluto y majestuoso.</p>
+                        <button class="btn-cart">Agregar al carrito</button>
+                    </div>
+                </li>
+                <li class="item"
+                    style="background-image: url('https://images-assets.nasa.gov/image/iss070e064005/iss070e064005~orig.jpg')">
+                    <div class="content">
+                        <h2 class="title">Archipiélago de Bazaruto en Mozambique</h2>
+                        <p class="description">Una porción del archipiélago de Bazaruto en Mozambique, un parque
+                            nacional creado para proteger la fauna marina en la costa sur de la nación africana, es
+                            fotografiada desde la Estación Espacial Internacional mientras orbitaba a 261 millas. </p>
+                        <button class="btn-cart">Agregar al carrito</button>
+                    </div>
+                </li>
+                <li class="item"
+                    style="background-image: url('https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001738/GSFC_20171208_Archive_e001738~orig.jpg')">
+                    <div class="content">
+                        <h2 class="title">Fusión Estelar: Crónicas de Andrómeda y la Vía Láctea</h2>
+                        <p class="description">Descubre los secretos de la evolución galáctica en esta experiencia de
+                            avistamiento profundo. Analizaremos la trayectoria de colisión y la fusión de estos dos
+                            colosos espaciales, observando los detalles de su estructura antes de que se conviertan en
+                            uno solo.</p>
+                        <button class="btn-cart">Agregar al carrito</button>
+                    </div>
+                </li>
+                <li class="item"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images-assets.nasa.gov/image/sts113-708-014/sts113-708-014~orig.jpg'); color: white;">
+                    <div class="content">
+                        <h2 class="title">Expedición Orbital STS-Patagonia</h2>
+                        <p class="description">No solo viajarás al espacio; serás testigo de uno de los paisajes más
+                            dramáticos de la Tierra desde 400 kilómetros de altura...</p>
+                        <button class="btn-cart">Agregar al carrito</button>
+                    </div>
+                </li>
+            </ul>
+
+            <nav class="nav-buttons">
+                <button class="prev">❮</button>
+                <button class="next">❯</button>
+            </nav>
+        </div>
+    </section>
+    <section class="container py-5" id="section-cards">
+        <header class="mb-5">
+            <h1 class="header-title fw-bold">TEAM STARBOUND</h1>
+            <div class="d-flex justify-content-between align-items-end">
+                <p class="small text-uppercase opacity-75 m-0">Especialistas en ingenieria y desarrollo de misiones
+                    comerciales. </p>
+
+                "STARBOUND"</p>
+            </div>
+        </header>
+
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+
+            <div class="col">
+                <div class="card h-100 squad-card">
+                    <img src="./fotos/Yessica.jpeg" class="card-img-top" alt="Member 2">
+                    <div class="card-body">
+                        <span class="member-id">ID: ORION 02</span>
+                        <h5 class="member-name">Yessica Gonzales</h5>
+                        <p class="member-role">INGENIERA AEROESPACIAL</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col">
-            <div class="card h-100 squad-card">
-                <img src="./fotos/Zully.jpeg" class="card-img-top" alt="Member 3">
-                <div class="card-body">
-                    <span class="member-id">ID: ORION 01</span>
-                    <h5 class="member-name">Zully Tamayo</h5>
-                    <p class="member-role">INGENIERA AEROESPACIAL</p>
+            <div class="col">
+                <div class="card h-100 squad-card">
+                    <img src="./fotos/Zully.jpeg" class="card-img-top" alt="Member 3">
+                    <div class="card-body">
+                        <span class="member-id">ID: ORION 01</span>
+                        <h5 class="member-name">Zully Tamayo</h5>
+                        <p class="member-role">INGENIERA AEROESPACIAL</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col">
-            <div class="card h-100 squad-card">
-                <img src="./fotos/Brayan.jpeg" class="card-img-top" alt="Member 4">
-                <div class="card-body">
-                    <span class="member-id">ID: APOLO 02</span>
-                    <h5 class="member-name">Brayan Castro</h5>
-                    <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+            <div class="col">
+                <div class="card h-100 squad-card">
+                    <img src="./fotos/Brayan.jpeg" class="card-img-top" alt="Member 4">
+                    <div class="card-body">
+                        <span class="member-id">ID: APOLO 02</span>
+                        <h5 class="member-name">Brayan Castro</h5>
+                        <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col">
-            <div class="card h-100 squad-card">
-                <img src="./fotos/Jhony.jpeg" alt="Member 5">
-                <div class="card-body">
-                    <span class="member-id">ID: APOLO 01</span>
-                    <h5 class="member-name">Jhony Moreno</h5>
-                    <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+            <div class="col">
+                <div class="card h-100 squad-card">
+                    <img src="./fotos/Jhony.jpeg" class="card-img-top" alt="Member 5">
+                    <div class="card-body">
+                        <span class="member-id">ID: APOLO 01</span>
+                        <h5 class="member-name">Jhony Moreno</h5>
+                        <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+                    </div>
                 </div>
             </div>
+
+        </div>
+    </section>
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- INFO -->
+            <div class="footer-info">
+                <h3>Starbound 🚀</h3>
+                <p>Tu próxima parada está a años luz.</p>
+                <p>contacto@Starbound.com.co</p>
+            </div>
+
+            <div id="nasa-content" class="footer-nasa">
+                <h4>Imagen del día </h4>
+                <img id="nasa-img" alt="Imagen NASA">
+                <p id="nasa-title"></p>
+            </div>
+
         </div>
 
-    </div>
-</section>
-<script src="app.js"></script>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
