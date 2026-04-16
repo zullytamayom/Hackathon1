@@ -1,74 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <title>landing page interespacial</title>
+
+    <title>Starbound</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <!-- TRANSICIÓN -->
     <div id="rocket-transition">
-        <div class="rocket">🚀</div>
-        <div class="trail"></div>
+        <div class="rocket">
+            <img src="fotos/cohete.png" alt="cohete" class="rocket-img">
+        </div>
     </div>
 
     <header>
-        <!-- Primer navbar para frases rotativas -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark barraFrases">
-            <div class="container frases w-100">
-                <span>Explora más allá de las estrellas</span>
-                <span>Reserva hoy, despega mañana</span>
-                <span>Donde empieza lo imposible</span>
-                <span>Turismo intergaláctico real</span>
-                <span>El universo te está esperando</span>
-            </div>
-        </nav>
+        <!-- FRASES -->
+      <nav class="navbar navbar-dark barraFrases">
+    <div class="marquee-container">
+        <div class="frases">
+            <span>Explora más allá de las estrellas</span>
+            <span>Reserva hoy, despega mañana</span>
+            <span>Donde empieza lo imposible</span>
+            <span>Turismo intergaláctico real</span>
+            <span>El universo te está esperando</span>
+            <span>Explora más allá de las estrellas</span>
+            <span>Reserva hoy, despega mañana</span>
+            <span>Donde empieza lo imposible</span>
+            <span>Turismo intergaláctico real</span>
+            <span>El universo te está esperando</span>
+        </div>
+    </div>
+</nav>
 
-        <!-- Banner bonito entre navs -->
-        <section id="banner" class="banner">
+        <!-- BANNER -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1>Starbound 🚀</h1>
+                <p>Tu próxima aventura comienza más allá de las estrellas</p>
+            </div>
         </section>
 
-        <!-- segundo navbar -->
+        <!-- NAV -->
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark barraNavegacion">
-            <div class="container-fluid flex">
-                <!-- que cambie cuando esta en vista movil, lo trea el navbar de bt -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- acceso a las secciones -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link opcionesBarra active" aria-current="page" href="#banner">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link opcionesBarra" href="#seccion-catalogo">Catalogo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link opcionesBarra" href="#section-cards">Contactanos</a>
-                        </li>
+                        <li><a class="nav-link opcionesBarra" href="#">Inicio</a></li>
+                        <li><a class="nav-link opcionesBarra" href="#seccion-catalogo">Catálogo</a></li>
+                        <li><a class="nav-link opcionesBarra" href="#section-cards">Equipo</a></li>
                     </ul>
                 </div>
 
-                <!-- carrito de compras de paquetes interestelares -->
-                <button class="btn btn-dark position-relative carrito ms-auto">
+                <!-- CARRITO -->
+                <button class="btn btn-dark position-relative ms-auto">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="contadorCarrito"
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+                        class="badge bg-primary position-absolute top-0 start-100 translate-middle">0</span>
                 </button>
 
             </div>
         </nav>
     </header>
 
+    <!-- SLIDER -->
     <section id="seccion-catalogo" class="slider-intergalactico">
         <div class="container">
             <ul class="slide-list">
@@ -79,7 +94,7 @@
                         <p class="description">Vuela sobre la "Cidade Maravilhosa" y descubre por qué brilla con luz
                             propia. Una vista privilegiada desde la ISS donde las luces de Río de Janeiro se funden con
                             el oscuro océano en un espectáculo visual inolvidable.</p>
-                        <button class="btn-cart">Agregar al carrito</button>
+                        <button class="btn-cart" data-precio="5700" data-nombre="rio">Agregar al carrito</button>
                     </div>
                 </li>
                 <li class="item"
@@ -89,7 +104,7 @@
                         <p class="description">Deja atrás la gravedad y camina por el Mar de la Tranquilidad. Vive la
                             experiencia definitiva de observar nuestro hogar azul desde la superficie plateada de la
                             Luna, en un silencio absoluto y majestuoso.</p>
-                        <button class="btn-cart">Agregar al carrito</button>
+                        <button class="btn-cart" data-precio="6700" data-nombre="moon">Agregar al carrito</button>
                     </div>
                 </li>
                 <li class="item"
@@ -99,7 +114,7 @@
                         <p class="description">Una porción del archipiélago de Bazaruto en Mozambique, un parque
                             nacional creado para proteger la fauna marina en la costa sur de la nación africana, es
                             fotografiada desde la Estación Espacial Internacional mientras orbitaba a 261 millas. </p>
-                        <button class="btn-cart">Agregar al carrito</button>
+                        <button class="btn-cart" data-precio="5500" data-nombre="mozambique">Agregar al carrito</button>
                     </div>
                 </li>
                 <li class="item"
@@ -110,7 +125,7 @@
                             avistamiento profundo. Analizaremos la trayectoria de colisión y la fusión de estos dos
                             colosos espaciales, observando los detalles de su estructura antes de que se conviertan en
                             uno solo.</p>
-                        <button class="btn-cart">Agregar al carrito</button>
+                        <button class="btn-cart" data-precio="9800" data-nombre="lactea">Agregar al carrito</button>
                     </div>
                 </li>
                 <li class="item"
@@ -119,7 +134,7 @@
                         <h2 class="title">Expedición Orbital STS-Patagonia</h2>
                         <p class="description">No solo viajarás al espacio; serás testigo de uno de los paisajes más
                             dramáticos de la Tierra desde 400 kilómetros de altura...</p>
-                        <button class="btn-cart">Agregar al carrito</button>
+                        <button class="btn-cart" data-precio="7340" data-nombre="patagonia">Agregar al carrito</button>
                     </div>
                 </li>
             </ul>
@@ -130,14 +145,14 @@
             </nav>
         </div>
     </section>
+    <!----CARDS ASTRONAUTAS-->
     <section class="container py-5" id="section-cards">
         <header class="mb-5">
             <h1 class="header-title fw-bold">TEAM STARBOUND</h1>
             <div class="d-flex justify-content-between align-items-end">
-                <p class="small text-uppercase opacity-75 m-0">Especialistas en ingenieria y desarrollo de misiones
-                    comerciales. </p>
-
-                "STARBOUND"</p>
+                <p class="small text-uppercase opacity-75 m-0">
+                    Especialistas en ingeniería y desarrollo de misiones comerciales.
+                </p>
             </div>
         </header>
 
@@ -145,10 +160,10 @@
 
             <div class="col">
                 <div class="card h-100 squad-card">
-                    <img src="./fotos/Yessica.jpeg" class="card-img-top" alt="Member 2">
+                    <img src="./fotos/Yessica.jpeg" class="card-img-top">
                     <div class="card-body">
                         <span class="member-id">ID: ORION 02</span>
-                        <h5 class="member-name">Yessica Gonzales</h5>
+                        <h5 class="member-name">Yessica Gonzalez</h5>
                         <p class="member-role">INGENIERA AEROESPACIAL</p>
                     </div>
                 </div>
@@ -156,7 +171,7 @@
 
             <div class="col">
                 <div class="card h-100 squad-card">
-                    <img src="./fotos/Zully.jpeg" class="card-img-top" alt="Member 3">
+                    <img src="./fotos/Zully.jpeg" class="card-img-top">
                     <div class="card-body">
                         <span class="member-id">ID: ORION 01</span>
                         <h5 class="member-name">Zully Tamayo</h5>
@@ -167,51 +182,74 @@
 
             <div class="col">
                 <div class="card h-100 squad-card">
-                    <img src="./fotos/Brayan.jpeg" class="card-img-top" alt="Member 4">
+                    <img src="./fotos/Brayan.jpeg" class="card-img-top">
                     <div class="card-body">
                         <span class="member-id">ID: APOLO 02</span>
                         <h5 class="member-name">Brayan Castro</h5>
-                        <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+                        <p class="member-role">INGENIERO AEROESPACIAL | OPERADOR DE CABINA</p>
                     </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card h-100 squad-card">
-                    <img src="./fotos/Jhony.jpeg" class="card-img-top" alt="Member 5">
+                    <img src="./fotos/Jhony.jpeg" class="card-img-top">
                     <div class="card-body">
                         <span class="member-id">ID: APOLO 01</span>
                         <h5 class="member-name">Jhony Moreno</h5>
-                        <p class="member-role">INGENIERO AEROESPACIAL| OPERADOR DE CABINA</p>
+                        <p class="member-role">INGENIERO AEROESPACIAL | OPERADOR DE CABINA</p>
                     </div>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
-
-        <div class="footer-container">
-
-            <!-- INFO -->
-            <div class="footer-info">
-                <h3>Starbound 🚀</h3>
-                <p>Tu próxima parada está a años luz.</p>
-                <p>contacto@Starbound.com.co</p>
-            </div>
-
-            <div id="nasa-content" class="footer-nasa">
-                <h4>Imagen del día </h4>
-                <img id="nasa-img" alt="Imagen NASA">
-                <p id="nasa-title"></p>
-            </div>
-
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3 class="brand">Starbound 🚀</h3>
+            <p class="slogan">"Tu próxima parada está a años luz"</p>
+            <p class="hackaton-info">Grupo 8 | Hackaton 1</p>
         </div>
 
-    </footer>
+        <div class="footer-section">
+            <h4>Tripulación</h4>
+            <ul class="team-list">
+                <li>Brayan</li>
+                <li>Zully</li>
+                <li>Yessica</li>
+                <li>Jhony</li>
+            </ul>
+        </div>
 
-    <script src="app.js"></script>
+        <div class="footer-section">
+            <h4>Imagen del Día (NASA)</h4>
+            <div id="nasa-content">
+                <img src="https://apod.nasa.gov/apod/image/2604/iss_moon_transit_zoom.jpeg" alt="NASA APOD">
+                <p id="nasa-title"></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modalCompra">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-body text-center">
+                    <p id="mensajePaquete"></p>
+                    <h3 id="precioPaquete"></h3>
+                    <button id="btnConfirmar" class="btn btn-primary">Confirmar 🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+
 </body>
 
 </html>
