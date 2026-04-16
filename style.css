@@ -2,85 +2,93 @@ html {
     scroll-behavior: smooth;
         height: 100%;
 }
+body {
+    margin: 0;
+    color: white;
+    font-family: Arial;
+ 
+    display: flex;
+    flex-direction: column;
 
-/* aqui seccion de nav pequenio para frases dinamicas */
+    transition: background 2s ease;
+    background: #000;
+   
+}
+
 
 .barraFrases {
     overflow: hidden;
-    height: 2.8rem;
+    height: 3.5rem;
     width: 100%;
-    background-image: url(https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    position: relative;
+    /* Fondo con overlay oscuro para legibilidad */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=687&auto=format&fit=crop');
     background-position: center;
+    background-size: cover;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.marquee-container {
+    display: flex;
+    width: 100%;
 }
 
 .frases {
     display: flex;
-    flex-direction: row;
-    animation: slide 30s infinite;
-    width: 100%;
-    font-family: 'Roboto Condensed', sans-serif;
+    white-space: nowrap;
+    /* Ajusta los segundos (40s) para más o menos velocidad */
+    animation: scrollInfinito 40s linear infinite;
 }
 
 .frases span {
-    min-width: 100%;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    text-align: center;
-    flex-shrink: 0;
-    color: white !important;
-    font-size: 1.5rem;
+    display: inline-block;
+    padding: 0 4rem; /* Espacio entre frases */
+    color: #e0e0e0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
-/* Animacion hacia un lado las frases */
-@keyframes slide {
-
-    0%,
-    15% {
+/* El truco de la magia: mover el contenedor exactamente la mitad */
+@keyframes scrollInfinito {
+    0% {
         transform: translateX(0);
     }
-
-    20%,
-    35% {
-        transform: translateX(-100%);
-    }
-
-    40%,
-    55% {
-        transform: translateX(-200%);
-    }
-
-    60%,
-    75% {
-        transform: translateX(-300%);
-    }
-
-    80%,
-    95% {
-        transform: translateX(-400%);
-    }
-
     100% {
-        transform: translateX(0);
+        transform: translateX(-50%);
     }
 }
 
-/* aqui seccion para el banner entre navs */
+/* Pausar al pasar el mouse para que el usuario pueda leer con calma */
+.barraFrases:hover .frases {
+    animation-play-state: paused;
+}
+
 
 .banner {
-    height: 25rem;
-    background-image: url(https://i.postimg.cc/tRNtbdR8/Gemini-Generated-Image-qlfc9iqlfc9iqlfc.png);
+    height: 500px;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url(https://i.postimg.cc/tRNtbdR8/Gemini-Generated-Image-qlfc9iqlfc9iqlfc.png);
+
     background-size: cover;
     background-position: center;
-    height: 500px;
-    color: azure;
-    padding: 200px 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: white;
 }
 
 
-/* aqui segunda barra ya de navegacion */
+
 .navbar-nav {
     margin: 0 auto;
     gap: 1.25rem;
@@ -109,9 +117,7 @@ html {
     scroll-margin-top: 100px;
 }
 
-/* Cierre de seccion navbar y cabeza de pagina */
 
-/* Cohete efectos */
 .rocket {
     position: absolute;
     top: 50%;
@@ -185,11 +191,11 @@ html {
     background-position: center;
     background-size: cover;
     display: inline-block;
-    transition: 0.5s; /* Transición suave al cambiar */
+    transition: 0.5s; 
     box-shadow: 0 30px 50px #000;
 }
 
-/* Las dos primeras tarjetas ocupan todo el fondo */
+
 .slide-list .item:nth-child(1),
 .slide-list .item:nth-child(2) {
     top: 0;
@@ -200,13 +206,13 @@ html {
     height: 100%;
 }
 
-/* Posiciones de las tarjetas pequeñas (a partir de la 3era) */
+
 .slide-list .item:nth-child(3) { left: 50%; }
 .slide-list .item:nth-child(4) { left: calc(50% + 220px); }
 .slide-list .item:nth-child(5) { left: calc(50% + 440px); }
 .slide-list .item:nth-child(n+6) { left: calc(50% + 660px); opacity: 0; }
 
-/* Contenido de la tarjeta activa */
+
 .content {
     position: absolute;
     top: 50%;
@@ -216,10 +222,10 @@ html {
     color: #eee;
     transform: translateY(-50%);
     font-family: 'Arial', sans-serif;
-    display: none; /* Oculto por defecto */
+    display: none; 
 }
 
-/* Solo mostramos el contenido de la 2da tarjeta (la que está al frente) */
+
 .slide-list .item:nth-child(2) .content {
     display: block;
 }
@@ -238,12 +244,12 @@ html {
     position: absolute;
     bottom: 50px;
     width: 100%;
-    left: 0;           /* Asegura que empiece desde el borde izquierdo */
+    left: 0;          
     text-align: center;
-    z-index: 20;       /* Asegúrate de que esté por encima de todo */
-    display: flex;     /* Usar flexbox es más confiable */
+    z-index: 20;      
+    display: flex;     
     justify-content: center; 
-    gap: 20px;         /* Espacio entre botones */
+    gap: 20px;       
 }
 
 .nav-buttons button {
@@ -263,7 +269,7 @@ html {
 }
 
 .squad-card {
-    background-color: #1a0b2e; /* Morado oscuro de la imagen */
+    background-color: #19152f;
     border: none;
     border-radius: 0; /* Sin redondeo para look técnico */
     transition: all 0.3s ease;
@@ -271,8 +277,8 @@ html {
  
 .squad-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(163, 71, 255, 0.3);
-    background-color: #24113a;
+    box-shadow: 0 10px 20px rgba(37, 33, 77, 0.3);
+    background-color: #1d1735;
 }
  
 .card-img-top {
@@ -290,7 +296,7 @@ html {
 /* Tipografía de Integrantes */
 .member-id {
     display: block;
-    color: #a347ff; /* Morado neón */
+    color: #7247ff; /* Morado neón */
     font-size: 0.7rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -317,53 +323,61 @@ header {
     padding-bottom: 15px;
 }
 
-/* Footer */
-body {
-    margin: 0;
-    color: white;
-    font-family: Arial;
- 
-    display: flex;
-    flex-direction: column;
- 
-    background: none;
-    transition: background 2s ease;
-   
-}
- 
-.contenido {
-    flex: 1;
-}
- 
-body::after {
-    content: "";
+
+
+
+#rocket-transition {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7));
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #0a0a1a 0%, #000000 100%);
+    display: none; /* Se activa con el .style.display = 'flex' del JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Por encima de todo */
+    overflow: hidden;
 }
- 
+
+.rocket {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 15px rgba(0, 100, 255, 0.8));
+    transition: transform 0.1s;
+}
+
+
+.launching {
+    animation: spaceLaunch 1.2s ease-in forwards;
+}
+
+@keyframes spaceLaunch {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    30% { transform: translateY(0) scale(1.2); opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+}
+
+
+.particula-espacial {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #a347ff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
 .footer {
     position: relative;
     overflow: hidden;
- 
-    padding: 40px 20px;
-    margin-top: 40px;
- 
-    color: #ccc;
- 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
- 
-    border-top: 1px solid rgba(255,255,255,0.1);
- 
-    opacity: 0;
-    transform: translateY(80px);
-    transition: all 1s ease;
- 
-    --color1: #020024;
-    --color2: #0a1a6b;
+    min-height: 300px;
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+    background: #0a0a1a;
+    --color1: rgba(0, 100, 255, 0.3);
+    --color2: rgba(150, 0, 255, 0.3);
 }
  
 .footer.visible {
@@ -402,6 +416,17 @@ body::after {
  
     z-index: -1;
 }
+.footer-container {
+    display: flex;
+    justify-content: space-around; /* Reparte las secciones con espacio entre ellas */
+    align-items: flex-start;
+    flex-wrap: wrap; /* Si la pantalla es pequeña, se ponen uno debajo de otro */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 5; /* Asegura que el texto esté por encima de las estrellas */
+}
  
 @keyframes galaxiaMovimiento {
     0% { transform: translate(0,0); }
@@ -422,4 +447,35 @@ body::after {
  
 #nasa-content img:hover {
     transform: scale(1.08);
+}
+
+
+/* MODAL DE LA COMPRA */
+
+.modal-content {
+    background: rgba(6, 5, 8, 0.95) !important; /* Tu morado oscuro */
+    backdrop-filter: blur(10px);
+    border: 2px solid #e2c7fd !important; /* Borde neón */
+    box-shadow: 0 0 20px rgba(208, 168, 248, 0.5);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(163, 71, 255, 0.3) !important;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(163, 71, 255, 0.3) !important;
+}
+
+#precioPaquete {
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.rocket-img {
+    filter: drop-shadow(0 0 10px #08151c);
+}
+
+.member-name{
+    color:#c3e5f7;
 }
