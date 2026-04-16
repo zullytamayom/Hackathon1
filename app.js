@@ -1,200 +1,221 @@
 // --- 1. CONFIGURACIÓN INICIAL DEL CARRITO ---
-let count = localStorage.getItem('carritoEspacial') || 0;
-const cartCount = document.getElementById('cart-count'); // Asegúrate de tener este ID en tu HTML
-if(cartCount) cartCount.innerText = count;
+const contadorUI = document.getElementById('contadorCarrito');
+
 
 // --- 2. FUNCIONALIDAD DEL CARRUSEL ---
 const next = document.querySelector('.next');
 const prev = document.querySelector('.prev');
 
-next.addEventListener('click', function() {
+next?.addEventListener('click', () => {
     let items = document.querySelectorAll('.item');
     document.querySelector('.slide-list').appendChild(items[0]);
 });
 
-prev.addEventListener('click', function() {
+prev?.addEventListener('click', () => {
     let items = document.querySelectorAll('.item');
     document.querySelector('.slide-list').prepend(items[items.length - 1]);
 });
 
 // --- 3. TRANSICIÓN DE COHETE (MENU) ---
-const linkCatalogo = document.querySelector('a[href="#seccion-catalogo"]');
-if (linkCatalogo) {
-    linkCatalogo.addEventListener('click', function(e) {
+document.querySelectorAll('.opcionesBarra').forEach(link => {
+    link.addEventListener('click', function(e) {
         e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
         const transition = document.getElementById('rocket-transition');
         const rocket = transition.querySelector('.rocket');
-        const target = document.querySelector('#seccion-catalogo');
 
         transition.style.display = 'flex';
-        
-        setTimeout(() => {
-            rocket.classList.add('launching');
-            target.scrollIntoView({ behavior: 'auto' }); 
+        rocket.classList.add('launching');
 
+        setTimeout(() => {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => {
-                transition.style.opacity = '0';
-                transition.style.transition = 'opacity 0.5s';
-                
-                setTimeout(() => {
-                    transition.style.display = 'none';
-                    transition.style.opacity = '1';
-                    rocket.classList.remove('launching');
-                }, 500);
-            }, 600);
+                transition.style.display = 'none';
+                rocket.classList.remove('launching');
+            }, 300);
         }, 400);
     });
+});
+
+// 4. LÓGICA DE COMPRA (POPUP)
+const modalCompra = new bootstrap.Modal(document.getElementById('modalCompra'));
+const btnConfirmar = document.getElementById('btnConfirmar');
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+const contador = document.getElementById('contadorCarrito');
+let botonActual = null;
+let productoActual = null;
+
+function actualizarCarritoUI() {
+    contador.textContent = carrito.length;
+
+    const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+
+    console.log("TOTAL:", total);
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// --- 4. AGREGAR AL CARRITO (TODOS LOS BOTONES) ---
-const botonesCarrito = document.querySelectorAll('.btn-cart');
 
-botonesCarrito.forEach(boton => {
+document.querySelectorAll('.btn-cart').forEach(boton => {
     boton.addEventListener('click', (e) => {
-        // Actualizar contador y LocalStorage
-        count++;
-        localStorage.setItem('carritoEspacial', count);
-        if(cartCount) cartCount.innerText = count;
 
-        // Partículas
-        crearParticulas(e.clientX, e.clientY);
+        const item = e.target.closest('.item');
+        const titulo = item.querySelector('.title').innerText;
 
-        // Feedback en el botón específico que se clickeó
-        const textoOriginal = boton.innerText;
-        boton.innerText = "¡En órbita! 🚀";
-        
-        setTimeout(() => {
-            boton.innerText = textoOriginal;
-        }, 1500);
+        const precio = Number(boton.dataset.precio);
+
+        document.getElementById('mensajePaquete').innerText =
+            `¿Deseas reservar tu lugar en: ${titulo}?`;
+
+        document.getElementById('precioPaquete').innerText =
+            `$ ${precio.toLocaleString('es-CO')}`;
+
+        botonActual = boton;
+
+        productoActual = {
+            nombre: titulo,
+            precio: precio
+        };
+
+        modalCompra.show();
     });
+});
+
+btnConfirmar.addEventListener('click', () => {
+
+    if (!productoActual) return;
+
+    const existe = carrito.find(item => item.nombre === productoActual.nombre);
+
+    if (existe) {
+        alert("Este paquete ya fue comprado 🚀");
+        modalCompra.hide();
+        return;
+    }
+
+    carrito.push(productoActual);
+
+    actualizarCarritoUI();
+
+    modalCompra.hide();
+    
+    if(botonActual) {
+        botonActual.innerText = "¡Comprado! ✅";
+        botonActual.classList.add('btn-success');
+        crearParticulas(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    alert("¡Felicidades! Tu ticket intergaláctico ha sido procesado.");
 });
 
 // --- 5. FUNCIÓN DE PARTÍCULAS ---
 function crearParticulas(x, y) {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
         const particula = document.createElement('div');
         particula.className = 'particula-espacial';
         document.body.appendChild(particula);
-
         particula.style.left = `${x}px`;
         particula.style.top = `${y}px`;
 
-        const destX = (Math.random() - 0.5) * 100;
-        const destY = -Math.random() * 150;
-
         particula.animate([
-            { transform: 'translate(0, 0)', opacity: 1 },
-            { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
-        ], {
-            duration: 800,
-            easing: 'ease-out'
-        }).onfinish = () => particula.remove();
+            { transform: 'translate(0,0) scale(1)', opacity: 1 },
+            { transform: `translate(${(Math.random()-0.5)*200}px, ${(Math.random()-0.5)*200}px) scale(0)`, opacity: 0 }
+        ], { duration: 1000 }).onfinish = () => particula.remove();
     }
 }
 
 
 
 // Consumo API de la NASA
-const apiKey = '3f38bc39ylKXHyVWWRZLFRg6efC5HUFsnmXYW1Jd';
+// const apiKey = '3f38bc39ylKXHyVWWRZLFRg6efC5HUFsnmXYW1Jd';
 
-async function obtenerFotoNasa() {
-  try {
-    const respuesta = await fetch(url);
+// async function obtenerFotoNasa() {
+//   try {
+//     const respuesta = await fetch(url);
     
-    // Validar si la respuesta es correcta (status 200)
-    if (!respuesta.ok) {
-      throw new Error(`Error en la petición: ${respuesta.status}`);
-    }
+//     // Validar si la respuesta es correcta (status 200)
+//     if (!respuesta.ok) {
+//       throw new Error(`Error en la petición: ${respuesta.status}`);
+//     }
 
-    const datos = await respuesta.json();
+//     const datos = await respuesta.json();
 
-    // Insertar los datos en el HTML
-    document.getElementById('titulo').innerText = datos.title;
-    document.getElementById('explicacion').innerText = datos.explanation;
+//     // Insertar los datos en el HTML
+//     document.getElementById('titulo').innerText = datos.title;
+//     document.getElementById('explicacion').innerText = datos.explanation;
     
-    const imgElement = document.getElementById('imagen-nasa');
+//     const imgElement = document.getElementById('imagen-nasa');
     
-    // Manejar si el contenido es un video.
-    if (datos.media_type === 'image') {
-      imgElement.src = datos.url;
-    } else {
-      imgElement.alt = "El contenido de hoy es un video: " + datos.url;
-    }
+//     // Manejar si el contenido es un video.
+//     if (datos.media_type === 'image') {
+//       imgElement.src = datos.url;
+//     } else {
+//       imgElement.alt = "El contenido de hoy es un video: " + datos.url;
+//     }
 
-  } catch (error) {
-    console.error("Hubo un error al consultar la API:", error);
-  }
-}
+//   } catch (error) {
+//     console.error("Hubo un error al consultar la API:", error);
+//   }
+// }
 
 // Ejecutar la función
-obtenerFotoNasa();
+// obtenerFotoNasa();
 
 
-//footer 
-function cargarNASA() {
-    const url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
- 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
- 
-            const img = document.getElementById("nasa-img");
-            const title = document.getElementById("nasa-title");
- 
-            if (data.media_type === "video") {
-                img.src = "https://via.placeholder.com/200x150?text=NASA+Video";
-                title.textContent = data.title + " (Video)";
-                return;
-            }
- 
-            img.src = data.url;
-            title.textContent = data.title;
- 
-            document.body.style.backgroundImage = `url(${data.url})`;
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
- 
-            const image = new Image();
-            image.crossOrigin = "Anonymous";
-            image.src = data.url;
- 
-            image.onload = function () {
-                const canvas = document.createElement("canvas");
-                const ctx = canvas.getContext("2d");
- 
-                canvas.width = image.width;
-                canvas.height = image.height;
- 
-                ctx.drawImage(image, 0, 0);
- 
-                const pixel = ctx.getImageData(50, 50, 1, 1).data;
-                const pixel2 = ctx.getImageData(200, 200, 1, 1).data;
- 
-                const color1 = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, 0.8)`;
-                const color2 = `rgba(${pixel2[0]}, ${pixel2[1]}, ${pixel2[2]}, 0.8)`;
- 
-                document.querySelector(".footer").style.setProperty("--color1", color1);
-                document.querySelector(".footer").style.setProperty("--color2", color2);
-            };
- 
-            document.body.style.filter = "brightness(0.75)";
- 
-        })
-        .catch(err => console.log("Error NASA:", err));
-}
- 
-cargarNASA();
- 
+// function cargarNASA() {
+//     const url = "https://api.nasa.gov/planetary/apod?api_key=3f38bc39ylKXHyVWWRZLFRg6efC5HUFsnmXYW1Jd";
+
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(data => {
+//             const img = document.getElementById("nasa-img");
+//             const title = document.getElementById("nasa-title");
+//             const footer = document.querySelector(".footer");
+
+//             if (data.media_type === "image") {
+//                 img.src = data.url;
+//                 title.textContent = data.title;
+
+//                 const testImg = new Image();
+//                 testImg.crossOrigin = "Anonymous";
+//                 testImg.src = data.url;
+
+//                 testImg.onload = function() {
+//                     try {
+//                         const canvas = document.createElement("canvas");
+//                         const ctx = canvas.getContext("2d");
+//                         canvas.width = 10; 
+//                         canvas.height = 10;
+//                         ctx.drawImage(testImg, 0, 0, 10, 10);
+                        
+//                         // Sacamos dos puntos de color
+//                         const p1 = ctx.getImageData(0, 0, 1, 1).data;
+//                         const p2 = ctx.getImageData(9, 9, 1, 1).data;
+
+                        
+//                     } catch (e) {
+//                         console.log("CORS evitó extraer colores, usando defecto.");
+//                     }
+//                 };
+//             }
+//         })
+//         .catch(err => console.error("Error NASA:", err));
+// }
+
 function animarFooter() {
     const footer = document.querySelector(".footer");
-    const trigger = window.innerHeight * 0.85;
- 
+    if(!footer) return;
+
     const top = footer.getBoundingClientRect().top;
- 
+    const trigger = window.innerHeight * 0.9;
+
     if (top < trigger) {
         footer.classList.add("visible");
     }
 }
- 
+
 window.addEventListener("scroll", animarFooter);
-window.addEventListener("load", animarFooter);
+// Ejecutar al cargar con un mini delay para que el DOM esté listo
+window.addEventListener("load", () => setTimeout(animarFooter, 100));
+
